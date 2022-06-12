@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>兽棋</title>
+    <meta name="description" content="兽棋">
+    <meta name="keywords" content="兽棋">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url("./assets/img/background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        button {
+            font-size: 30px;
+            color: cornflowerblue;
+            border-color: saddlebrown;
+            margin: 20px;
+            padding: 10px;
+            background-image: url("./assets/img/pieces/back.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+<div style="color: azure;padding: 10px;font-size: 30px">
+    玩法：
+    <br>
+    1. 两人轮流行动，要么翻牌，要么走牌，要么吃对方的牌；
+    <br>
+    2. 走牌只能走到空白位置，虎、豹可以一次直着走多格（飞棋），其余牌一次只能直着走一格；
+    <br>
+    3. 吃牌按照以下顺序，一象二狮三（飞）虎四（飞）豹五狼六狗七猫八鼠，鼠吃象，象吃鼠以外的、狮吃象以外的、虎吃象和狮以外的、豹吃象狮虎以外的，依次类推。
+</div>
+<div>
+    <button onclick="window.open('./console.html')">离线对战
+    </button>
+
+    <button onclick="window.open('./online.html')">在线对战
+    </button>
+</div>
+
+</body>
+
+</html>
