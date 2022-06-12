@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>兽棋</title>
+  <meta name="description" content="兽棋">
+  <meta name="keywords" content="兽棋">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background-image: url("./assets/img/background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    canvas {
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="assets/js/Online.js"></script>
+  <script>
+    var timer;
+    var socket;
+
+    function start(action) {
+      socket = new Socket();
+      let message = action;
+      socket.createWebSocket();
+      if (action != 'create') {
+        message = "join::" + action;
+      }
+      timer = window.setInterval(send, 1000, socket, message);
+    }
+
+    function send(socket, message) {
+      if (socket.getState() == 1) {
+        socket.sendMessage(message);
+        clearTimeout(timer);
+      } else {
+
+      }
+    }
+  </script>
+</head>
+
+<body>
+<script>
+  $.confirm({
+    title: '',
+    content: '选择你的操作',
+    closeIcon: false,
+    buttons: {
+      ok: {
+        text: '创建对局',
+        btnClass: 'btn-blue',
+        action: function () {
+          start('create');
+        }
+      },
+      cancel: {
+        text: '加入对局',
+        btnClass: 'btn-blue',
+        action: function () {
+          let value = prompt('对局号：', '');
+          if (value == null) {
+            alert('你取消了输入！');
+            location.reload();
+          } else if (value == '') {
+            alert('对局号为空，请重新输入！');
+            location.reload();
+          } else {
+            start(value);
+          }
+        }
+      }
+    }
+  });
+</script>
+
+<div style="text-align:center;">
+  <span id="information" style="font-size: 20px;font-style:italic;color:floralwhite;"></span>
+</div>
+
+<canvas id="chess" style="background-color: aliceblue;">不支持canvas</canvas>
+</body>
+
+</html>
